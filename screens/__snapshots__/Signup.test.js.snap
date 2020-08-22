@@ -10,9 +10,74 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <Text>
-    Signup
-  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Name"
+    placeholderTextColor="grey"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#6D4539",
+        "color": "#6D4539",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "margin": 10,
+        "padding": 15,
+        "textAlign": "center",
+        "width": "85%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    onChangeText={[Function]}
+    placeholder="Email"
+    placeholderTextColor="grey"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#6D4539",
+        "color": "#6D4539",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "margin": 10,
+        "padding": 15,
+        "textAlign": "center",
+        "width": "85%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Password"
+    placeholderTextColor="grey"
+    rejectResponderTermination={true}
+    secureTextEntry={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#6D4539",
+        "color": "#6D4539",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "margin": 10,
+        "padding": 15,
+        "textAlign": "center",
+        "width": "85%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
   <View
     accessibilityRole="button"
     accessibilityState={Object {}}
@@ -53,7 +118,7 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        Sign Up
+        Sign me up!
       </Text>
     </View>
   </View>

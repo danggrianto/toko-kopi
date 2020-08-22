@@ -10,9 +10,52 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <Text>
-    Login Screen
-  </Text>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    onChangeText={[Function]}
+    placeholder="Email"
+    placeholderTextColor="grey"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#6D4539",
+        "color": "#6D4539",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "margin": 10,
+        "padding": 15,
+        "textAlign": "center",
+        "width": "85%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Password"
+    placeholderTextColor="grey"
+    rejectResponderTermination={true}
+    secureTextEntry={true}
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#6D4539",
+        "color": "#6D4539",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "margin": 10,
+        "padding": 15,
+        "textAlign": "center",
+        "width": "85%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
   <View
     accessibilityRole="button"
     accessibilityState={Object {}}
@@ -53,7 +96,7 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        SignUp
+        Login
       </Text>
     </View>
   </View>
@@ -97,7 +140,51 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        Forgot Password
+        Forgot Password?
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={Object {}}
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#F8AF5E",
+            },
+          ]
+        }
+      >
+        Don't have account? Signup here!
       </Text>
     </View>
   </View>
