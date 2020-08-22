@@ -1,10 +1,20 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { Button, View, Text, StyleSheet } from 'react-native'
+import { CommonActions } from '@react-navigation/native'
 
-function Signup() {
+import Colors from '../config/Colors'
+
+function Signup({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Signup</Text>
+      <Button
+        title="Sign Up"
+        color={Colors.primary}
+        onPress={() => {
+          navigation.navigate('My Account')
+        }}
+      />
     </View>
   )
 }
@@ -12,6 +22,8 @@ function Signup() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 
