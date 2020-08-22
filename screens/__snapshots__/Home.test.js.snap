@@ -4,7 +4,10 @@ exports[`renders correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": undefined,
+      "alignItems": "center",
+      "backgroundColor": "#F9D74F",
+      "flex": 1,
+      "justifyContent": "center",
     }
   }
 >
