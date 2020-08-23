@@ -1,19 +1,65 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, View, Text, StyleSheet } from 'react-native'
 
+import { firebase } from '../config/Firebase'
 import Colors from '../config/Colors'
 
 function Profile({ navigation }) {
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const usersRef = firebase.firestore().collection('users')
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const unsub = usersRef
+          .doc(user.uid)
+          .get()
+          .then((document) => {
+            const userData = document.data()
+            setLoading(false)
+            setUser(userData)
+          })
+          .catch((error) => {
+            setLoading(false)
+          })
+      } else {
+        setLoading(false)
+      }
+      return () => unsub()
+    })
+  }, [])
+
+  const onLogoutPress = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        setUser(null)
+      })
+      .catch((error) => console.error(error))
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Profile Page</Text>
-      <Button
-        title="Login"
-        color={Colors.primary}
-        onPress={() => {
-          navigation.navigate('Login')
-        }}
-      />
+      {user ? (
+        <View>
+          <Text>Welcome {user.name}</Text>
+          <Button
+            title="Logout"
+            color={Colors.primary}
+            onPress={onLogoutPress}
+          />
+        </View>
+      ) : (
+        <Button
+          title="Login"
+          color={Colors.primary}
+          onPress={() => {
+            navigation.navigate('Login')
+          }}
+        />
+      )}
     </View>
   )
 }

@@ -1,13 +1,45 @@
 import React, { useState } from 'react'
 import { TextInput, Button, View, Text, StyleSheet } from 'react-native'
-import { CommonActions } from '@react-navigation/native'
 
+import { firebase } from '../config/Firebase'
 import Colors from '../config/Colors'
 
 function Signup({ navigation }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const onRegisterPress = () => {
+    if (password !== confirmPassword) {
+      alert("Passwords don't match.")
+      return
+    }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid
+        const data = {
+          id: uid,
+          email,
+          name,
+        }
+        const usersRef = firebase.firestore().collection('users')
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            navigation.navigate('My Account', { user: data })
+          })
+          .catch((error) => {
+            alert(error)
+          })
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -34,12 +66,18 @@ function Signup({ navigation }) {
         placeholderTextColor="grey"
         secureTextEntry={true}
       />
+      <TextInput
+        style={styles.inputBox}
+        value={confirmPassword}
+        onChangeText={(text) => setConfirmPassword(text)}
+        placeholder="Confirm Password"
+        placeholderTextColor="grey"
+        secureTextEntry={true}
+      />
       <Button
         title="Sign me up!"
         color={Colors.primary}
-        onPress={() => {
-          navigation.navigate('My Account')
-        }}
+        onPress={onRegisterPress}
       />
     </View>
   )
@@ -49,7 +87,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   inputBox: {
     width: '85%',

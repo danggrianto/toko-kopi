@@ -10,9 +10,6 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <Text>
-    Profile Page
-  </Text>
   <View
     accessibilityRole="button"
     accessibilityState={Object {}}

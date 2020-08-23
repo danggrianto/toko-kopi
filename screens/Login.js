@@ -1,14 +1,38 @@
 import React, { useState } from 'react'
 import { TextInput, Button, View, Text, StyleSheet } from 'react-native'
 
+import { firebase } from '../config/Firebase'
 import Colors from '../config/Colors'
 
 function Login({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const onLogin = () => {
-    navigation.navigate('My Account')
+  const onLoginPress = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid
+        const usersRef = firebase.firestore().collection('users')
+        usersRef
+          .doc(uid)
+          .get()
+          .then((firestoreDocument) => {
+            if (!firestoreDocument.exists) {
+              alert('User does not exist anymore.')
+              return
+            }
+            const user = firestoreDocument.data()
+            navigation.navigate('My Account', { user })
+          })
+          .catch((error) => {
+            alert(error)
+          })
+      })
+      .catch((error) => {
+        alert(error)
+      })
   }
 
   return (
@@ -29,7 +53,7 @@ function Login({ navigation }) {
         placeholderTextColor="grey"
         secureTextEntry={true}
       />
-      <Button title="Login" color={Colors.primary} onPress={onLogin} />
+      <Button title="Login" color={Colors.primary} onPress={onLoginPress} />
       <Button
         title="Forgot Password?"
         color={Colors.primary}
