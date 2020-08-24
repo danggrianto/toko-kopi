@@ -23,8 +23,10 @@ function Profile({ navigation }) {
           .catch((error) => {
             setLoading(false)
           })
+        console.log('USER LOGGED IN')
       } else {
         setLoading(false)
+        console.log('USER NOT LOGGED IN')
       }
       return () => unsub()
     })
